@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private GoogleMap map;
     private RecyclerView recyclerView;
     private ArrayList<City> cities = new ArrayList<>();
+    private CitiesAdapter adapter;
     DatabaseReference databaseCityes;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         //=========================
         databaseCityes =database.getReference();
+        adapter =new CitiesAdapter(this,cities);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         databaseCityes.child("Cities").addValueEventListener(new ValueEventListener() {
             @Override
@@ -61,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
                     City city =city1.getValue(City.class);
                     cities.add(city);
                 }
-                if(cities.size()==dataSnapshot.getChildrenCount()){
+                if(cities.size()==dataSnapshot.getChildrenCount()+1){
 
+                    adapter.updateData(cities);
                     OnMapReadyCallback callback=new OnMapReadyCallback() {
                         @Override
                         public void onMapReady(GoogleMap googleMap) {
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView=findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new CitiesAdapter(this,cities));
+        recyclerView.setAdapter(adapter);
         OnMapReadyCallback callback=new OnMapReadyCallback() {
             @Override
             public void onMapReady(GoogleMap googleMap) {
@@ -106,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        mapFragment.getMapAsync(callback);
+        //mapFragment.getMapAsync(callback);
         mapFragment.getView().setClickable(false);
     }
 }
