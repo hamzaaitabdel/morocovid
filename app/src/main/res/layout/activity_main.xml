@@ -24,9 +24,10 @@
             android:padding="10dp"
             android:layout_height="match_parent"/>
         <TextView
+            android:id="@+id/total"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="30"
+            android:text="00"
             android:padding="10dp"
             android:gravity="center"
             android:layout_height="match_parent"/>
@@ -49,9 +50,10 @@
                 android:padding="7dp"
                 android:layout_height="match_parent"/>
             <TextView
+                android:id="@+id/recovered"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="1"
+                android:text="0"
                 android:padding="10dp"
                 android:gravity="center"
                 android:layout_height="match_parent"/>
@@ -70,9 +72,10 @@
                 android:padding="10dp"
                 android:layout_height="match_parent"/>
             <TextView
+                android:id="@+id/death"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="1"
+                android:text="0"
                 android:padding="10dp"
                 android:gravity="center"
                 android:layout_height="match_parent"/>
@@ -96,6 +99,7 @@
                 android:padding="7dp"
                 android:layout_height="match_parent"/>
             <TextView
+                android:id="@+id/new_cases"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="3"
@@ -112,11 +116,12 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="New Death: "
+                android:text="excluded: "
                 android:gravity="center"
                 android:padding="10dp"
                 android:layout_height="match_parent"/>
             <TextView
+                android:id="@+id/new_death"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="0"

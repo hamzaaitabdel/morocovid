@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,8 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private GoogleMap map;
     private RecyclerView recyclerView;
     private ArrayList<City> cities = new ArrayList<>();
+     public TextView death,recovered,total,new_case,excluded;
     private CitiesAdapter adapter;
-    DatabaseReference databaseCityes;
+    DatabaseReference databaseRef;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
@@ -42,7 +44,33 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        databaseRef =database.getReference();
         setContentView(R.layout.activity_main);
+        death=findViewById(R.id.death);
+        excluded=findViewById(R.id.new_death);
+        total=findViewById(R.id.total);
+        new_case=findViewById(R.id.new_cases);
+        recovered=findViewById(R.id.recovered);
+        databaseRef.child("others").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot info1: dataSnapshot.getChildren()){
+                    Info info =info1.getValue(Info.class);
+                    death.setText(info.getDeath()+"");
+                    excluded.setText(info.getExcluded()+"");
+                    total.setText(info.getConfirmed()+"");
+                    new_case.setText(info.getNews()+"");
+                    recovered.setText(info.getRecoverers()+"");
+
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(MainActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
         //fake data
         /*
         cities.add(new City("Rabat",5,new LatLng(34.020882, -6.841650)));
@@ -53,22 +81,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         //=========================
-        databaseCityes =database.getReference();
+
         adapter =new CitiesAdapter(this,cities);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        databaseCityes.child("cities").addValueEventListener(new ValueEventListener() {
+        databaseRef.child("Cities").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot city1: dataSnapshot.getChildren()){
                     City city =city1.getValue(City.class);
                     cities.add(city);
-                    Toast.makeText(MainActivity.this,"name "+city.getCity(),Toast.LENGTH_SHORT).show();
-
                 }
 
                 if(cities.size()==dataSnapshot.getChildrenCount()){
-                    Toast.makeText(MainActivity.this,cities.size()+"--",Toast.LENGTH_LONG).show();
-
                     adapter.updateData(cities);
                     OnMapReadyCallback callback=new OnMapReadyCallback() {
                         @Override
@@ -78,12 +102,9 @@ public class MainActivity extends AppCompatActivity {
                             map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                             map.getUiSettings().setAllGesturesEnabled(false);
-                            Toast.makeText(MainActivity.this,"hamza1",Toast.LENGTH_LONG).show();
-
                             for(City city : cities){
                                 googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                             }
-                            Toast.makeText(MainActivity.this,"hamza2",Toast.LENGTH_LONG).show();
 
                         }
                     };
@@ -118,4 +139,9 @@ public class MainActivity extends AppCompatActivity {
         mapFragment.getMapAsync(callback);
         mapFragment.getView().setClickable(false);
     }
+
+    public static void addData(String data[]){
+
+    }
+
 }
