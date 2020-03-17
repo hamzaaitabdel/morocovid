@@ -56,14 +56,18 @@ public class MainActivity extends AppCompatActivity {
         databaseCityes =database.getReference();
         adapter =new CitiesAdapter(this,cities);
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        databaseCityes.child("Cities").addValueEventListener(new ValueEventListener() {
+        databaseCityes.child("cities").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot city1: dataSnapshot.getChildren()){
                     City city =city1.getValue(City.class);
                     cities.add(city);
+                    Toast.makeText(MainActivity.this,"name "+city.getCity(),Toast.LENGTH_SHORT).show();
+
                 }
+
                 if(cities.size()==dataSnapshot.getChildrenCount()){
+                    Toast.makeText(MainActivity.this,cities.size()+"--",Toast.LENGTH_LONG).show();
 
                     adapter.updateData(cities);
                     OnMapReadyCallback callback=new OnMapReadyCallback() {
@@ -74,9 +78,13 @@ public class MainActivity extends AppCompatActivity {
                             map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                             map.getUiSettings().setAllGesturesEnabled(false);
+                            Toast.makeText(MainActivity.this,"hamza1",Toast.LENGTH_LONG).show();
+
                             for(City city : cities){
                                 googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                             }
+                            Toast.makeText(MainActivity.this,"hamza2",Toast.LENGTH_LONG).show();
+
                         }
                     };
                     mapFragment.getMapAsync(callback);
