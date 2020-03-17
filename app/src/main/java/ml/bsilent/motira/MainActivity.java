@@ -33,6 +33,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private SupportMapFragment mapFragment;
+    private int s=0;
     private GoogleMap map;
     private RecyclerView recyclerView;
     private ArrayList<City> cities = new ArrayList<>();
@@ -118,7 +119,10 @@ public class MainActivity extends AppCompatActivity {
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                             map.getUiSettings().setAllGesturesEnabled(false);
                             for(City city : cities){
-                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                                s+=city.getNum();
+                            }
+                            for(City city : cities){
+                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/s).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                             }
 
                         }
@@ -146,8 +150,9 @@ public class MainActivity extends AppCompatActivity {
                 map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                 map.getUiSettings().setAllGesturesEnabled(false);
+
                 for(City city : cities){
-                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/1000).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                 }
             }
         };
