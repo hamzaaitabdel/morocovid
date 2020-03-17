@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
                     City city =city1.getValue(City.class);
                     cities.add(city);
                 }
-                if(cities.size()==dataSnapshot.getChildrenCount()+1){
+                if(cities.size()==dataSnapshot.getChildrenCount()){
 
                     adapter.updateData(cities);
                     OnMapReadyCallback callback=new OnMapReadyCallback() {

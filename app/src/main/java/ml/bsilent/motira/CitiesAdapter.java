@@ -32,7 +32,8 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CViewHolde
     @Override
     public void onBindViewHolder(@NonNull CViewHolder cViewHolder, int i) {
         City city = cities.get(i);
-        cViewHolder.textView.setText(city.getCity()+" : "+city.getNum());
+        cViewHolder.textView.setText(city.getCity()+" :");
+        cViewHolder.textView1.setText(city.getNum()+"");
     }
 
     @Override
@@ -42,9 +43,11 @@ public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CViewHolde
 
     class CViewHolder extends RecyclerView.ViewHolder{
         TextView textView;
+        TextView textView1;
         public CViewHolder(@NonNull View itemView) {
             super(itemView);
             textView=itemView.findViewById(R.id.tv);
+            textView1=itemView.findViewById(R.id.tv1);
         }
     }
 }
