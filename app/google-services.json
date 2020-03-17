@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "580895250609",
+    "firebase_url": "https://corona-a409a.firebaseio.com",
+    "project_id": "corona-a409a",
+    "storage_bucket": "corona-a409a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580895250609:android:1a05aca2448f23b1d76a90",
+        "android_client_info": {
+          "package_name": "ml.bsilent.motira"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580895250609-adjtvrf90mr42eu34e78svuepj4q325g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1FIWRc9I0YN65E7YVVTk8G4R7KWhbKr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580895250609-adjtvrf90mr42eu34e78svuepj4q325g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
