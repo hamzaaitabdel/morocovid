@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         cities.add(new City("Rabat",5,new LatLng(34.020882, -6.841650)));
         cities.add(new City("Casablanca",3,new LatLng(33.589886, -7.603869)));
         cities.add(new City("Fes",1,new LatLng(34.03715, -4.9998))); */
-        cities.add(new City("Tetouan",2,new LatLng(35.5889,-5.3626)));
+        //cities.add(new City("Tetouan",2,new LatLng(35.5889,-5.3626)));
 
 
 
@@ -74,9 +74,8 @@ public class MainActivity extends AppCompatActivity {
                             map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                             map.getUiSettings().setAllGesturesEnabled(false);
-                            //map.addCircle(new CircleOptions().fillColor(getResources().getColor(R.color.colorAccent)).radius(100000).center(new LatLng(30.589886, -7.603869)).strokeWidth(0));
                             for(City city : cities){
-                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(city.getLatLng()).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                             }
                         }
                     };
@@ -103,13 +102,12 @@ public class MainActivity extends AppCompatActivity {
                 map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                 map.getUiSettings().setAllGesturesEnabled(false);
-                //map.addCircle(new CircleOptions().fillColor(getResources().getColor(R.color.colorAccent)).radius(100000).center(new LatLng(30.589886, -7.603869)).strokeWidth(0));
                 for(City city : cities){
-                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(city.getLatLng()).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                 }
             }
         };
-        //mapFragment.getMapAsync(callback);
+        mapFragment.getMapAsync(callback);
         mapFragment.getView().setClickable(false);
     }
 }
