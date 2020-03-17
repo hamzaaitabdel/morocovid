@@ -5,9 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,17 +36,29 @@ public class MainActivity extends AppCompatActivity {
     private GoogleMap map;
     private RecyclerView recyclerView;
     private ArrayList<City> cities = new ArrayList<>();
-     public TextView death,recovered,total,new_case,excluded;
+    private TextView death,recovered,total,new_case,excluded;
+    private Button akhbar;
     private CitiesAdapter adapter;
     DatabaseReference databaseRef;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-
-
+    @Override
+    protected void onStart() {
+        super.onStart();
+        akhbar=findViewById(R.id.akhbar12);
+        akhbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(getBaseContext(),News.class);
+                startActivity(myIntent);
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         databaseRef =database.getReference();
         setContentView(R.layout.activity_main);
         death=findViewById(R.id.death);
@@ -140,8 +155,6 @@ public class MainActivity extends AppCompatActivity {
         mapFragment.getView().setClickable(false);
     }
 
-    public static void addData(String data[]){
 
-    }
 
 }

@@ -168,4 +168,12 @@
         android:layout_gravity="bottom"
         android:background="#0E1525"/>
 </FrameLayout>
+
+    <Button
+        android:id="@+id/akhbar12"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="192dp"
+        android:layout_height="67dp"
+        android:text="NEWS" />
+
 </LinearLayout></androidx.drawerlayout.widget.DrawerLayout>
