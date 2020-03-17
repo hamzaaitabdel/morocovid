@@ -38,14 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,20 +52,39 @@ public class MainActivity extends AppCompatActivity {
 
 
         //=========================
-        databaseCityes =database.getReference("cities");
-        databaseCityes.addValueEventListener(new ValueEventListener() {
+        databaseCityes =database.getReference();
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        databaseCityes.child("Cities").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot city: dataSnapshot.getChildren()){
-                    City stadt =dataSnapshot.getValue(City.class);
-                    cities.add(stadt);
+                for(DataSnapshot city1: dataSnapshot.getChildren()){
+                    City city =city1.getValue(City.class);
+                    cities.add(city);
+                }
+                if(cities.size()==dataSnapshot.getChildrenCount()){
+
+                    OnMapReadyCallback callback=new OnMapReadyCallback() {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+                            map= googleMap;
+                            map.clear();
+                            map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
+                            map.getUiSettings().setAllGesturesEnabled(false);
+                            //map.addCircle(new CircleOptions().fillColor(getResources().getColor(R.color.colorAccent)).radius(100000).center(new LatLng(30.589886, -7.603869)).strokeWidth(0));
+                            for(City city : cities){
+                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/30).center(city.getLatLng()).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                            }
+                        }
+                    };
+                    mapFragment.getMapAsync(callback);
                 }
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(MainActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -95,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(callback);
         mapFragment.getView().setClickable(false);
     }

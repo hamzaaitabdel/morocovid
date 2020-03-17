@@ -7,6 +7,7 @@ public class City {
     private int num;
     private LatLng latLng;
 
+    public City(){}
     public LatLng getLatLng() {
         return latLng;
     }
