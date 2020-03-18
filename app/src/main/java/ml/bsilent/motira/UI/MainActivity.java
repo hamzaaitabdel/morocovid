@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity {
                     Info info =info1.getValue(Info.class);
                     death.setText(info.getDeath()+"");
                     excluded.setText(info.getExcluded()+"");
-                    tot=info.getConfirmed();
-                    total.setText(tot+"");
+                   // tot=info.getConfirmed();
+                    //total.setText(tot+"");
                     new_case.setText(info.getNews()+"");
                     recovered.setText(info.getRecoverers()+"");
 
@@ -114,7 +114,9 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot city1: dataSnapshot.getChildren()){
                     City city =city1.getValue(City.class);
                     cities.add(city);
+                    tot+=city.getNum();
                 }
+                total.setText(tot+"");
 
                 if(cities.size()==dataSnapshot.getChildrenCount()){
                     adapter.updateData(cities);
@@ -175,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.update:
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://www.instagram.com/h1mza_aitabdelouahab/"));
+                        Uri.parse("http://morocovid.rf.gd/"));
                 startActivity(browserIntent);
                 return true;
             case R.id.about:

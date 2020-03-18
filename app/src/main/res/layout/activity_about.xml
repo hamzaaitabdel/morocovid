@@ -6,6 +6,70 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
-    tools:context=".UI.AboutActivity">
+    tools:context=".UI.AboutActivity"
+    >
 
+    <TextView
+        android:id="@+id/created"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Created by :" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Abdelah Alaoui"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ait abdelouahab Hamza" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Information from :" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ministère de la santé" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="marocovid.com" />
+
+    <TextView
+    android:id="@+id/textView10"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="coronaproject19@gmail.com" />
+    <TextView
+        android:id="@+id/textView9"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wikipedia" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/logo"
+        >
+
+    </ImageView>
 </LinearLayout>
