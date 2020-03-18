@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".UI.News">
     <ProgressBar
         android:layout_width="40dp"
@@ -17,6 +18,13 @@
         android:layout_height="match_parent">
 
     </ml.bsilent.motira.UI.VerticalViewPager>
-
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/ic_arrow"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="17dp"
+        android:id="@+id/down_bt"
+        />
 
 </FrameLayout>

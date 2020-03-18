@@ -3,7 +3,7 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".MainActivity"
+    tools:context="UI.MainActivity"
     xmlns:tools="http://schemas.android.com/tools">
 <LinearLayout
     android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@drawable/background_curve"
         android:layout_margin="5dp">
         <TextView
@@ -39,7 +39,7 @@
         <LinearLayout
             android:orientation="horizontal" android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:background="@drawable/background_curve"
             android:layout_margin="5dp">
             <TextView
@@ -60,7 +60,7 @@
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal" android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:layout_weight="1"
             android:background="@drawable/background_curve"
             android:layout_margin="5dp">
@@ -88,7 +88,7 @@
         <LinearLayout
             android:orientation="horizontal" android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:background="@drawable/background_curve"
             android:layout_margin="5dp">
             <TextView
@@ -109,7 +109,7 @@
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal" android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="65dp"
             android:layout_weight="1"
             android:background="@drawable/background_curve"
             android:layout_margin="5dp">
@@ -143,65 +143,45 @@
         tools:context="com.example.mapwithmarker.MapsMarkerActivity" />
     <LinearLayout
         android:layout_gravity="right"
-        android:paddingTop="10dp"
+        android:layout_marginTop="95dp"
+        android:paddingTop="7dp"
         android:orientation="horizontal"
         android:paddingRight="10dp"
-        android:layout_width="230dp"
-        android:layout_height="290dp">
+        android:layout_width="190dp"
+        android:layout_height="175dp">
         <FrameLayout
-            android:layout_marginTop="70dp"
-            android:layout_marginBottom="60dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/line"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
-            android:layout_width="202dp"
+            android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="2dp"
+            android:requiresFadingEdge="vertical"
+            android:fadingEdgeLength="30dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_gravity="bottom"
-        android:background="#0E1525">
-
-        <Button
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:layout_gravity="bottom"
+            android:layout_height="wrap_content">
+            <Button
             android:id="@+id/akhbar12"
+            android:background="@color/colorPrimaryDark"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="197dp"
+                android:elevation="16dp"
             android:layout_height="67dp"
-            android:text="NEWS" />
+                android:shadowColor="@color/colorAccent"
+            android:layout_gravity="bottom|center_horizontal"
+            android:text="NEWS" /></FrameLayout>
 
-        <Button
-            android:id="@+id/update"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="197dp"
-            android:textSize="16dp"
-            android:layout_height="67dp"
-            android:layout_weight="1"
-            android:text="get update (in bio)" />
-    </LinearLayout>
 </FrameLayout>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Credit :" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Ait abdelouahab Hamza " />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Alaoui Abdellah" />
 
 </LinearLayout></androidx.drawerlayout.widget.DrawerLayout>

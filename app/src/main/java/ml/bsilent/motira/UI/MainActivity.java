@@ -3,14 +3,21 @@ package ml.bsilent.motira.UI;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PointF;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,34 +47,12 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<City> cities = new ArrayList<>();
     private TextView death,recovered,total,new_case,excluded;
-    private Button akhbar,update;
+    private Button akhbar;
     private long tot=0;
     private CitiesAdapter adapter;
     DatabaseReference databaseRef;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        akhbar=findViewById(R.id.akhbar12);
-        akhbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(getBaseContext(), News.class);
-                startActivity(myIntent);
-            }
-        });
-        update=findViewById(R.id.update);
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent browserIntent = new Intent(
-                        Intent.ACTION_VIEW,
-                        Uri.parse("https://www.instagram.com/h1mza_aitabdelouahab/"));
-                startActivity(browserIntent);
-            }
-        });
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +65,15 @@ public class MainActivity extends AppCompatActivity {
         total=findViewById(R.id.total);
         new_case=findViewById(R.id.new_cases);
         recovered=findViewById(R.id.recovered);
+
+        akhbar=findViewById(R.id.akhbar12);
+        akhbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(getBaseContext(), News.class);
+                startActivity(myIntent);
+            }
+        });
         databaseRef.child("others").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -133,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                             map.getUiSettings().setAllGesturesEnabled(false);
                             for(City city : cities){
-                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/tot).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*500000/tot).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                             }
 
                         }
@@ -170,6 +164,25 @@ public class MainActivity extends AppCompatActivity {
         mapFragment.getView().setClickable(false);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu,menu);
+        return true;
+    }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.update:
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://www.instagram.com/h1mza_aitabdelouahab/"));
+                startActivity(browserIntent);
+                return true;
+            case R.id.about:
+                Intent intent = new Intent(MainActivity.this,AboutActivity.class);
+                startActivity(intent);
+                return true;
+            default: return super.onOptionsItemSelected(item);
+        }
+    }
 }

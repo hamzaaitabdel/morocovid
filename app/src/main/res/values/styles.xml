@@ -8,6 +8,7 @@
         <item name="colorAccent">#7087BC</item>
         <item name="android:textColor">#fff</item>
         <item name="android:textSize">15sp</item>
+        <item name="android:itemBackground">#141f36</item>
     </style>
 
 </resources>
