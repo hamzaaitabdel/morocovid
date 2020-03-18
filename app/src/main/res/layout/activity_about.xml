@@ -37,7 +37,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Information from :" />
+        android:text="Informations from :" />
 
     <TextView
         android:id="@+id/textView6"
@@ -54,17 +54,27 @@
         android:text="marocovid.com" />
 
     <TextView
-    android:id="@+id/textView10"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="coronaproject19@gmail.com" />
-    <TextView
         android:id="@+id/textView9"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Wikipedia" />
+    <TextView
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView11"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="CONTACT US" />
+
+    <TextView
+        android:layout_marginTop=""
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="coronaproject19@gmail.com" />
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
