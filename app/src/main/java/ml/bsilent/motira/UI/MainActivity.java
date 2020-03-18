@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ArrayList<City> cities = new ArrayList<>();
     private TextView death,recovered,total,new_case,excluded;
-    private Button akhbar;
+    private Button akhbar,update;
     private long tot=0;
     private CitiesAdapter adapter;
     DatabaseReference databaseRef;
@@ -54,6 +55,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent myIntent = new Intent(getBaseContext(), News.class);
                 startActivity(myIntent);
+            }
+        });
+        update=findViewById(R.id.update);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent browserIntent = new Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://www.instagram.com/h1mza_aitabdelouahab/"));
+                startActivity(browserIntent);
             }
         });
     }

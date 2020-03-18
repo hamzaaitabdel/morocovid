@@ -162,18 +162,46 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
     </LinearLayout>
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="bottom"
-        android:background="#0E1525"/>
+        android:background="#0E1525">
+
+        <Button
+            android:id="@+id/akhbar12"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="197dp"
+            android:layout_height="67dp"
+            android:text="NEWS" />
+
+        <Button
+            android:id="@+id/update"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="197dp"
+            android:textSize="16dp"
+            android:layout_height="67dp"
+            android:layout_weight="1"
+            android:text="get update (in bio)" />
+    </LinearLayout>
 </FrameLayout>
 
-    <Button
-        android:id="@+id/akhbar12"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="67dp"
-        android:text="NEWS" />
+        android:layout_height="wrap_content"
+        android:text="Credit :" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Ait abdelouahab Hamza " />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Alaoui Abdellah" />
 
 </LinearLayout></androidx.drawerlayout.widget.DrawerLayout>
