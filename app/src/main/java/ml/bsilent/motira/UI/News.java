@@ -34,7 +34,6 @@ public class News extends AppCompatActivity {
         setContentView(R.layout.activity_news);
         final List<Fragment> list = new ArrayList<>();
 
-        list.add(new FragmentPage());
         viewPager = findViewById(R.id.pager);
         pagerAdapter =new VPagerAdapter(getSupportFragmentManager(),list);
         viewPager.setAdapter(pagerAdapter);

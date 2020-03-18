@@ -45,6 +45,8 @@ public class VerticalViewPager extends ViewPager {
     public boolean onTouchEvent(MotionEvent ev) {
         return super.onTouchEvent(getIntercambioXY(ev));
     }
+
+
     private class VerticalPage implements ViewPager.PageTransformer{
 
         @Override

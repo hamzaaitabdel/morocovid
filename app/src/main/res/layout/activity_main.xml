@@ -3,17 +3,17 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".UI.MainActivity"
+    tools:context=".MainActivity"
     xmlns:tools="http://schemas.android.com/tools">
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
+    android:background="#0E1525"
     android:layout_height="match_parent">
 
     <LinearLayout
         android:orientation="horizontal" android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/background_curve"
         android:layout_margin="5dp">
         <TextView
@@ -35,11 +35,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_height="70dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:orientation="horizontal" android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/background_curve"
             android:layout_margin="5dp">
             <TextView
@@ -84,11 +84,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_height="70dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:orientation="horizontal" android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/background_curve"
             android:layout_margin="5dp">
             <TextView
@@ -109,7 +109,7 @@
         </LinearLayout>
         <LinearLayout
             android:orientation="horizontal" android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/background_curve"
             android:layout_margin="5dp">
@@ -144,24 +144,23 @@
     <LinearLayout
         android:layout_gravity="right"
         android:paddingTop="10dp"
-        android:layout_marginTop="65dp"
         android:orientation="horizontal"
         android:paddingRight="10dp"
-        android:layout_width="170dp"
-        android:layout_height="170dp">
+        android:layout_width="230dp"
+        android:layout_height="290dp">
         <FrameLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="7dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="60dp"
+            android:layout_marginRight="20dp"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/line"/>
+
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_gravity="center_vertical"
             android:id="@+id/recyclerview"
-            />
+            android:layout_width="202dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
@@ -172,11 +171,8 @@
 
     <Button
         android:id="@+id/akhbar12"
-        android:layout_width="192dp"
-        android:layout_gravity="center"
-        android:shadowColor="@color/colorAccent"
-        android:elevation="10dp"
-        android:background="@color/colorPrimaryDark"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
         android:layout_height="67dp"
         android:text="NEWS" />
 
