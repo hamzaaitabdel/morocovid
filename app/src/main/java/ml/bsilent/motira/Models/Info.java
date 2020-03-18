@@ -1,9 +1,8 @@
-package ml.bsilent.motira;
+package ml.bsilent.motira.Models;
 
-import java.nio.LongBuffer;
 
 public class Info {
-    Long  confirmed,Excluded,Recoverers,death,news;
+    private long  confirmed,Excluded,Recoverers,death,news;
 
     public Info() {
     }

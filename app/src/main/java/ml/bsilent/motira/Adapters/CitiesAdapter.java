@@ -1,4 +1,4 @@
-package ml.bsilent.motira;
+package ml.bsilent.motira.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import ml.bsilent.motira.Models.City;
+import ml.bsilent.motira.R;
 
 public class CitiesAdapter extends RecyclerView.Adapter<CitiesAdapter.CViewHolder> {
     private ArrayList<City> cities;

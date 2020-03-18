@@ -1,4 +1,4 @@
-package ml.bsilent.motira;
+package ml.bsilent.motira.Models;
 
 public class Documents {
     private int id;
@@ -16,15 +16,9 @@ public class Documents {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getLink() {
         return link;
     }
 
-    public void setLink(String link) {
-        this.link = link;
-    }
 }

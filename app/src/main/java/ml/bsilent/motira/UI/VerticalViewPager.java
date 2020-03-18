@@ -1,4 +1,4 @@
-package ml.bsilent.motira;
+package ml.bsilent.motira.UI;
 
 import android.content.Context;
 import android.util.AttributeSet;

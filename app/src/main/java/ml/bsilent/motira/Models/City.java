@@ -1,4 +1,4 @@
-package ml.bsilent.motira;
+package ml.bsilent.motira.Models;
 
 import com.google.android.gms.maps.model.LatLng;
 

@@ -1,4 +1,4 @@
-package ml.bsilent.motira;
+package ml.bsilent.motira.UI;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,12 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +20,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
-import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,14 +28,19 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import ml.bsilent.motira.Adapters.CitiesAdapter;
+import ml.bsilent.motira.Models.City;
+import ml.bsilent.motira.Models.Info;
+import ml.bsilent.motira.R;
+
 public class MainActivity extends AppCompatActivity {
     private SupportMapFragment mapFragment;
-    private int s=0;
     private GoogleMap map;
     private RecyclerView recyclerView;
     private ArrayList<City> cities = new ArrayList<>();
     private TextView death,recovered,total,new_case,excluded;
     private Button akhbar;
+    private long tot=0;
     private CitiesAdapter adapter;
     DatabaseReference databaseRef;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         akhbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(getBaseContext(),News.class);
+                Intent myIntent = new Intent(getBaseContext(), News.class);
                 startActivity(myIntent);
             }
         });
@@ -74,7 +76,8 @@ public class MainActivity extends AppCompatActivity {
                     Info info =info1.getValue(Info.class);
                     death.setText(info.getDeath()+"");
                     excluded.setText(info.getExcluded()+"");
-                    total.setText(info.getConfirmed()+"");
+                    tot=info.getConfirmed();
+                    total.setText(tot+"");
                     new_case.setText(info.getNews()+"");
                     recovered.setText(info.getRecoverers()+"");
 
@@ -119,10 +122,7 @@ public class MainActivity extends AppCompatActivity {
                             map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                             map.getUiSettings().setAllGesturesEnabled(false);
                             for(City city : cities){
-                                s+=city.getNum();
-                            }
-                            for(City city : cities){
-                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/s).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                                googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/tot).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                             }
 
                         }
@@ -150,9 +150,8 @@ public class MainActivity extends AppCompatActivity {
                 map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
                 map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
                 map.getUiSettings().setAllGesturesEnabled(false);
-
                 for(City city : cities){
-                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/1000).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/tot).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
                 }
             }
         };
