@@ -17,7 +17,7 @@
         <activity android:name=".UI.News" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="MainActivity" />
+                android:value="UI.MainActivity" />
         </activity>
 
         <meta-data

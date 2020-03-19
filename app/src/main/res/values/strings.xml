@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MoroCovid-19</string>
+    <string name="created_by">Created by :</string>
+    <string name="informations_from">Informations from :</string>
+    <string name="contact_us">CONTACT US</string>
+    <string name="news">NEWS</string>
+    <string name="total_recovered">Total Recovered :</string>
+    <string name="total_death">Total Death:</string>
+    <string name="total_cases">Total Cases :</string>
+    <string name="new_cases">New Cases :</string>
+    <string name="excluded">Excluded:</string>
+    <string name="credit">Credit</string>
+    <string name="update">Update</string>
 </resources>

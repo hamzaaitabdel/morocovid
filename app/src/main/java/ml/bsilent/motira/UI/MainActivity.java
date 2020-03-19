@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView death,recovered,total,new_case,excluded;
     private Button akhbar;
     private long tot=0;
+    private SwipeRefreshLayout refreshLayout;
     private CitiesAdapter adapter;
     DatabaseReference databaseRef;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         databaseRef =database.getReference();
         setContentView(R.layout.activity_main);
         death=findViewById(R.id.death);
+        refreshLayout = findViewById(R.id.refresh);
         excluded=findViewById(R.id.new_death);
         total=findViewById(R.id.total);
         new_case=findViewById(R.id.new_cases);
@@ -74,15 +77,47 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
-        databaseRef.child("others").addValueEventListener(new ValueEventListener() {
+        refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimaryDark));
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getDataFromDB();
+            }
+        });
+        adapter =new CitiesAdapter(this,cities);
+        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
+        getDataFromDB();
+        recyclerView=findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
+        OnMapReadyCallback callback=new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                map= googleMap;
+                map.clear();
+                map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
+                map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
+                map.getUiSettings().setAllGesturesEnabled(false);
+                for(City city : cities){
+                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/tot).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                }
+            }
+        };
+        mapFragment.getMapAsync(callback);
+        mapFragment.getView().setClickable(false);
+    }
+
+    private void getDataFromDB() {
+        cities.clear();
+        tot=0;
+        databaseRef.child("others").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot info1: dataSnapshot.getChildren()){
                     Info info =info1.getValue(Info.class);
                     death.setText(info.getDeath()+"");
                     excluded.setText(info.getExcluded()+"");
-                   // tot=info.getConfirmed();
-                    //total.setText(tot+"");
                     new_case.setText(info.getNews()+"");
                     recovered.setText(info.getRecoverers()+"");
 
@@ -95,19 +130,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        //fake data
-        /*
-        cities.add(new City("Rabat",5,new LatLng(34.020882, -6.841650)));
-        cities.add(new City("Casablanca",3,new LatLng(33.589886, -7.603869)));
-        cities.add(new City("Fes",1,new LatLng(34.03715, -4.9998))); */
-        //cities.add(new City("Tetouan",2,new LatLng(35.5889,-5.3626)));
-
-
-
-        //=========================
-
-        adapter =new CitiesAdapter(this,cities);
-        mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         databaseRef.child("Cities").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -119,6 +141,9 @@ public class MainActivity extends AppCompatActivity {
                 total.setText(tot+"");
 
                 if(cities.size()==dataSnapshot.getChildrenCount()){
+                    if(refreshLayout.isRefreshing()){
+                        refreshLayout.setRefreshing(false);
+                    }
                     adapter.updateData(cities);
                     OnMapReadyCallback callback=new OnMapReadyCallback() {
                         @Override
@@ -144,26 +169,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        recyclerView=findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-        OnMapReadyCallback callback=new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                map= googleMap;
-                map.clear();
-                map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
-                map.getUiSettings().setAllGesturesEnabled(false);
-                for(City city : cities){
-                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*600000/tot).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
-                }
-            }
-        };
-        mapFragment.getMapAsync(callback);
-        mapFragment.getView().setClickable(false);
     }
 
     @Override

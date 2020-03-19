@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.drawerlayout.widget.DrawerLayout android:layout_width="match_parent"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/refresh"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="UI.MainActivity"
@@ -19,7 +20,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:text="Total Cases : "
+            android:text="@string/total_cases"
              android:gravity="center"
             android:padding="10dp"
             android:layout_height="match_parent"/>
@@ -46,7 +47,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Total Recovered : "
+                android:text="@string/total_recovered"
                 android:padding="7dp"
                 android:layout_height="match_parent"/>
             <TextView
@@ -67,7 +68,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="Total  Death: "
+                android:text="@string/total_death"
                 android:gravity="center"
                 android:padding="10dp"
                 android:layout_height="match_parent"/>
@@ -95,7 +96,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="New Cases : "
+                android:text="@string/new_cases"
                 android:padding="7dp"
                 android:layout_height="match_parent"/>
             <TextView
@@ -116,7 +117,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:text="excluded: "
+                android:text="@string/excluded"
                 android:gravity="center"
                 android:padding="10dp"
                 android:layout_height="match_parent"/>
@@ -180,8 +181,8 @@
             android:layout_height="67dp"
                 android:shadowColor="@color/colorAccent"
             android:layout_gravity="bottom|center_horizontal"
-            android:text="NEWS" /></FrameLayout>
+            android:text="@string/news" /></FrameLayout>
 
 </FrameLayout>
 
-</LinearLayout></androidx.drawerlayout.widget.DrawerLayout>
+</LinearLayout></androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
