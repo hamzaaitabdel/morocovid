@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/refresh"
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="UI.MainActivity"
     xmlns:tools="http://schemas.android.com/tools">
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/refresh"
+        >
 <LinearLayout
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -189,6 +191,7 @@
 </FrameLayout>
 
 </LinearLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:id="@+id/progress"
@@ -199,4 +202,3 @@
             android:layout_height="50dp"
             android:layout_gravity="center"/>
     </FrameLayout></FrameLayout>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

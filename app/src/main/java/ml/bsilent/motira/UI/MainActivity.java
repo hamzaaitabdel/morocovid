@@ -251,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(@NonNull androidx.loader.content.Loader<List<City>> loader) {
     adapter.updateData(null);
+    initCities();
     }
 
     static class Loader extends androidx.loader.content.AsyncTaskLoader<List<City>>{
@@ -291,13 +292,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         recovered.setText(object.getString("recovered"));
     }
     public void initCities(){
+        cities.clear();
         cities.add(new City("BeniMellalKhnifra","BeniMellal-Khénifra", 32.33725, -6.34983));
-        cities.add(new City("Daraatafilalet","Drâa-Tafilalet", 31.75,4.5 ));
+        cities.add(new City("Daraatafilalet","Drâa-Tafilalet", 31.61596594,-5.1965332 ));
         cities.add(new City("Fsmeknes","Fes-Meknes",34.03715 ,-4.9998 ));
-        cities.add(new City("LayouneSakiaElHamra","Layoune-SakiaElHamra",27.1418000 ,-13.1879700 ));
-        cities.add(new City("GuelmimOuedNoun","Guelmim-Oued Noun",28.98696 ,-10.05738 ));
-        cities.add(new City("MarrakechSafi","Marrakech-safi",31.63 , -8.008889));
-        cities.add(new City("Oriental","Oriental",34.686667 ,-1.911389 ));
+        cities.add(new City("LayouneSakiaElHamra","Layoune-SakiaElHamra",26.09625491 ,-12.05200195 ));
+        cities.add(new City("GuelmimOuedNoun","Guelmim-Oued Noun",28.29470743 ,-9.88220215 ));
+        cities.add(new City("MarrakechSafi","Marrakech-safi",31.63 , -9.12689209));
+        cities.add(new City("Oriental","Oriental",33.52307881 ,-2.3840332 ));
         cities.add(new City("SoussMassa","Souss-Massa",31.120018,-8.067919 ));
         cities.add(new City("RabatSalKenitra","Rabat-Sale-Kenitra",34.020882 , -6.84165));
         cities.add(new City("TangerTetouanAlHoceima","Tanger-Tetouan",35.5889 ,-5.3626 ));
