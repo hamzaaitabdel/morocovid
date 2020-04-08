@@ -225,27 +225,31 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(@NonNull androidx.loader.content.Loader<List<City>> loader, List<City> data) {
-        adapter.updateData((ArrayList<City>) data);
-        cities= (ArrayList<City>) data;
-        progress.setVisibility(View.GONE);
-        total.setText(tot+"");
         if(refreshLayout.isRefreshing()){
-        refreshLayout.setRefreshing(false);}
-        OnMapReadyCallback callback=new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(GoogleMap googleMap) {
-                map= googleMap;
-                map.clear();
-                map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
-                map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
-                map.getUiSettings().setAllGesturesEnabled(false);
-                for(City city : cities){
-                    googleMap.addCircle(new CircleOptions().radius(city.getNum()*500000/tot).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
-                }
+            refreshLayout.setRefreshing(false);}
+        if(data!=null){
+            adapter.updateData((ArrayList<City>) data);
+            cities= (ArrayList<City>) data;
+            progress.setVisibility(View.GONE);
+            total.setText(tot+"");
+            OnMapReadyCallback callback=new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    map= googleMap;
+                    map.clear();
+                    map.setMapStyle(MapStyleOptions.loadRawResourceStyle(MainActivity.this,R.raw.map));
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(28, -4),5.3f));
+                    map.getUiSettings().setAllGesturesEnabled(false);
+                    for(City city : cities){
+                        googleMap.addCircle(new CircleOptions().radius(city.getNum()*500000/tot).center(new LatLng(city.getX(),city.getY())).fillColor(Color.parseColor("#70ff4c4c")).strokeWidth(0));
+                    }
 
-            }
-        };
-        mapFragment.getMapAsync(callback);
+                }
+            };
+            mapFragment.getMapAsync(callback);}
+        else{
+            Toast.makeText(this, "Error!Please check you connection!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -287,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private static void updateInfo(String json) throws JSONException {
         JSONObject object=new JSONObject(json);
         new_case.setText(object.getString("newcases"));
-        excluded.setText(object.getString("TotalTests"));
+        excluded.setText(Integer.parseInt(object.getString("TotalTests"))-tot+"");
         death.setText(object.getString("totaldeaths"));
         recovered.setText(object.getString("recovered"));
     }
