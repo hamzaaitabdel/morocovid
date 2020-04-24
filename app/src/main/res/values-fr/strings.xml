@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">MoroCovid-19</string>
-    <string name="created_by">Creer par :</string>
+    <string name="created_by">Créer par :</string>
     <string name="informations_from">Les information de:</string>
     <string name="contact_us">NOUS CONTACTER</string>
     <string name="news">NOUVELLES</string>
     <string name="total_recovered"> Total récupéré :</string>
-    <string name="total_death">Total Death:</string>
-    <string name="total_cases">Décès total :</string>
+    <string name="total_death">Décès total:</string>
+    <string name="total_cases">total des cas :</string>
     <string name="new_cases">Nouveaux cas :</string>
     <string name="excluded">Exclue:</string>
     <string name="credit">Crédit</string>
